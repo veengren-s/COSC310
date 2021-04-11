@@ -1,4 +1,10 @@
 # Elon Musk Chat Bot
+## Updates for Indavidual Assignment
+For the indavidual assignment I encorperated the use of 2 different API's in order to improve the comprehension of our chatbot.
+The 2 API's are:
+1. Google translate API
+2. Wofram alpha short awnser API
+
 ## Updates for Assignment 3
 Since Assignment 2 we have added new features and also enhanced some quality of life features to our chatbot. 
 Additions include:
