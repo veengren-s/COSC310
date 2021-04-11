@@ -169,3 +169,10 @@ Client can converse with Elon normally, typing input in the console and receivin
 ![image](https://user-images.githubusercontent.com/75397522/112515860-e80e8600-8d53-11eb-98b9-01b70a5f2d8f.png)
 
 ***Figure 17:*** Server Side Socket Code
+
+## API's
+---------------------------------------
+![image](https://user-images.githubusercontent.com/71776777/114321870-7156e400-9ada-11eb-9bb1-e9846972a448.png)
+***Figure 18:*** Google Translate api method
+![image](https://user-images.githubusercontent.com/71776777/114321862-61d79b00-9ada-11eb-8cb2-590a23d2b908.png)
+***Figure 19:*** Wolfram alfa api
