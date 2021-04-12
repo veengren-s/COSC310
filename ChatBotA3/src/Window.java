@@ -22,14 +22,15 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import com.google.cloud.translate.Detection;
 import com.google.cloud.translate.Translate;
+import com.google.cloud.translate.Translate.TranslateOption;
 import com.google.cloud.translate.TranslateOptions;
 import com.google.cloud.translate.Translation;
 
 import edu.stanford.nlp.coref.CorefCoreAnnotations;
 import edu.stanford.nlp.coref.data.CorefChain;
 import edu.stanford.nlp.pipeline.*;
-
 
 public class Window extends JFrame implements KeyListener{
 	//Here we make a window that will contain our text area box and the input box at the bottom as well as a scroll bar the shows up when needed
@@ -39,7 +40,7 @@ public class Window extends JFrame implements KeyListener{
 	JScrollPane sideBar= new JScrollPane(talkArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	//This is to load the image of the bot into an icon form
 	ImageIcon icon = new ImageIcon("img/bot.png");
-
+	Detection Source;
 	//Variable to keep track how positive vs. negative the conversation is
 	int Sentiment=0;
 
@@ -590,6 +591,7 @@ public class Window extends JFrame implements KeyListener{
 		
 		
 		response = Responses[r][c];
+		response= translate_back(response);
 		//add the response to the text Area
 		addText(response + "\n");
 		
@@ -746,21 +748,30 @@ public class Window extends JFrame implements KeyListener{
 	public void Wolf(List<String> sent) throws IOException{
 		try {
 		String b = "http://api.wolframalpha.com/v1/result?appid=RUUJHL-XTW44JUHW7&i=";
-			for (int i = 0; i < sent.size();i++) {
-				b = b + sent.get(i)+"+";
+		System.out.println(sent.toString());
+		b= b +(sent.get(0));	
+		for (int i = 1; i < sent.size();i++) {
+				b = b + "+"+sent.get(i);
 			}
-			URL u = new URL(b.substring(0, b.length()-1));
+			System.out.println(b);
+			URL u = new URL(b.substring(0, b.length()));
 	        BufferedReader br = new BufferedReader(new InputStreamReader(u.openStream()));
 	        String s =br.readLine();
+	        if(s.length() == 0) {
+				addText("hmmmm, cant find anything");
+	        }
 	        while (s != null) {
 	        	if (s.length() >= 100) {
 	        		addText(s.substring(0, 99)+'-'+'\n');
 	        		addText(s.substring(99) +'\n');
 	        	}
+	        	else {
+		        	addText(s);
+	        	}
                 s=br.readLine();
             }
 		}catch(Exception E) {
-			addText("hmmmm, cant find anything");
+			addText("hmmmm, Something went Wrong. Try Again.");
 		}
 	}
 	/************************************
@@ -771,12 +782,16 @@ public class Window extends JFrame implements KeyListener{
 	 */
 	public String Translate(String s) {
 			Translate translate = TranslateOptions.newBuilder().setApiKey("AIzaSyD2CQN0FIzxb3AY7NcN4oxitdKBfnHPLo8").build().getService();
-		    
-			Translation translation = translate.translate(s,Translate.TranslateOption.targetLanguage("en"));
-
-			System.out.printf("Translated Text:\n\t%s\n", translation.getTranslatedText());
+			Source = translate.detect(s);
+ 			Translation translation = translate.translate(s,Translate.TranslateOption.targetLanguage("en"));
+ 			System.out.println(Source.getLanguage());
 			return translation.getTranslatedText();
-			
 	}
+	public String translate_back(String s) {
+		Translate translate = TranslateOptions.newBuilder().setApiKey("AIzaSyD2CQN0FIzxb3AY7NcN4oxitdKBfnHPLo8").build().getService();
+		Translation translation = translate.translate(s,Translate.TranslateOption.targetLanguage(Source.getLanguage()));
+		return translation.getTranslatedText();
+	}
+
 }
 
