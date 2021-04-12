@@ -174,15 +174,18 @@ Client can converse with Elon normally, typing input in the console and receivin
 ## API's
 ---------------------------------------
 The google translate API is used to read the input and if it not in english it will translate the response to english so our bot is able to respon.
+
 ![image](https://user-images.githubusercontent.com/71776777/114329174-ed155880-9afb-11eb-8b70-5ae286568fae.png)
 
 ***Figure 18:*** Google Translate api method
 
-![image](https://user-images.githubusercontent.com/71776777/114322562-1fb05880-9ade-11eb-825b-7b3fad994bf4.png)
+![image](https://user-images.githubusercontent.com/71776777/114329284-277ef580-9afc-11eb-86e6-37e3871b2e58.png)
+
 
 ***Figure 19:*** Sample output of Google Translate API
 
 The Wolfram short awnser API is used to find a respon to the question, if it is not known by the bot.
+
 ![image](https://user-images.githubusercontent.com/71776777/114322475-baf4fe00-9add-11eb-8d70-75a37873f958.png)
 
 ***Figure 20:*** Wolfram alfa API
