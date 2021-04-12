@@ -43,7 +43,7 @@ public class Window extends JFrame implements KeyListener{
 	Detection Source;
 	//Variable to keep track how positive vs. negative the conversation is
 	int Sentiment=0;
-
+	String key = "";
 	Pipeline pipeline;
 	List<Object[]> temp = CoRef("");
 
@@ -781,14 +781,14 @@ public class Window extends JFrame implements KeyListener{
 	 * @return
 	 */
 	public String Translate(String s) {
-			Translate translate = TranslateOptions.newBuilder().setApiKey("AIzaSyD2CQN0FIzxb3AY7NcN4oxitdKBfnHPLo8").build().getService();
+			Translate translate = TranslateOptions.newBuilder().setApiKey(key).build().getService();
 			Source = translate.detect(s);
  			Translation translation = translate.translate(s,Translate.TranslateOption.targetLanguage("en"));
  			System.out.println(Source.getLanguage());
 			return translation.getTranslatedText();
 	}
 	public String translate_back(String s) {
-		Translate translate = TranslateOptions.newBuilder().setApiKey("AIzaSyD2CQN0FIzxb3AY7NcN4oxitdKBfnHPLo8").build().getService();
+		Translate translate = TranslateOptions.newBuilder().setApiKey(key).build().getService();
 		Translation translation = translate.translate(s,Translate.TranslateOption.targetLanguage(Source.getLanguage()));
 		return translation.getTranslatedText();
 	}
