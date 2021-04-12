@@ -173,7 +173,7 @@ Client can converse with Elon normally, typing input in the console and receivin
 
 ## API's
 ---------------------------------------
-The google translate API is used to read the input and if it not in english it will translate the response to english so our bot is able to respon.
+The google translate API is used to read the input and if it not in english it will translate the response to english so our bot is able to respond. It then responds to the question by translating the english response we programed back into the detected language.
 
 ![image](https://user-images.githubusercontent.com/71776777/114329174-ed155880-9afb-11eb-8b70-5ae286568fae.png)
 
